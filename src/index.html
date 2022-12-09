@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>		
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css"  href="css/style.css" />
+
+</head>
+<body>
+
+
+
+
+
+
+<div class ="registration-box" id="registration">
+    <form class="nickname-box">
+        <label for="fname">Nickname:</label>
+        <input type="text" id="fname" name="fname">
+      </form>
+    <button id="start">Submit</button>
+</div>
+
+
+
+
+<div class="quiz-box" id="quiz">
+
+    <div id="timer-box">
+        <div id="timer">
+            <span id="seconds">0s</span>
+        </div>
+    </div>
+
+    <div class="quiz-header">
+
+
+        
+        <h2 id="question">Question text</h2>
+
+
+        <ul>
+            <li>
+                <input type="radio" name="answer" id="a" class="answer">
+                <label for="a" id="a_text">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="b" class="answer">
+                <label for="b" id="b_text">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="c" class="answer">
+                <label for="c" id="c_text">Question</label>
+            </li>
+            <li>
+                <input type="radio" name="answer" id="c" class="answer">
+                <label for="c" id="d_text">Question</label>
+            </li>   
+        </ul>
+    </div>
+    <button id="submit">Submit</button>
+</div>
+    
+
+</body> 
+
+<script type="module" src="./js/timer.js"></script>
+<script type="module" src="./js/main.js"></script>
+<script type="module" src="./js/request.js"></script>
+</html>

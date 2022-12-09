@@ -1,0 +1,17 @@
+@import "quiz-box.css";
+@import "registration-box.css";
+@import "timer.css";    
+
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-position: center;
+    background-size: cover;
+}
