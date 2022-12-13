@@ -1,3 +1,7 @@
+import { Player } from './player.js';
+
+
+
 const api_url =  "https://courselab.lnu.se/quiz/question/1"   
 
 
@@ -12,19 +16,18 @@ const submit_button = document.getElementById('submit')
 const quiz_box = document.getElementById('quiz')
 const registration_box = document.getElementById('registration')
 const input_name_form = document.getElementById('nickName')
+var players = [];
+
 
 start_button.onclick = function() {
     quiz_box.style.display = "flex";
     registration_box.style.display = "none";
-
-    let player = input_name_form.value
-    console.log(player)
+    let player = new Player(input_name_form.value)
+    players.push(player);
 }
 
 submit_button.onclick = function() {
-
+    
 }
-
-
 
 

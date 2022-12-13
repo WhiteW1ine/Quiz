@@ -1,4 +1,4 @@
-let seconds = 5; 
+let seconds = 15; 
 
 let tempSeconds = seconds;
 
