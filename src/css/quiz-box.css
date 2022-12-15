@@ -5,7 +5,7 @@ h2{
 }
 
 .quiz-box{
-    display: none;
+    display: flex;
     flex-direction: column;
     background-color: #fff;
     border-radius: 10px;
@@ -45,4 +45,8 @@ button:hover{
 button:focus{
     outline: none;
     background-color: #5ec6eb;
+}
+
+.hidden {
+    display: none;
 }

@@ -1,8 +1,9 @@
 import { Player } from './modules/player.js';
+import { Timer } from './modules/timer.js';
 
 
 
-const api_url =  "https://courselab.lnu.se/quiz/question/1"   
+const startingApiURL=  "https://courselab.lnu.se/quiz/question/1"   
 
 
 const question_text = document.getElementById('question')
@@ -21,20 +22,23 @@ const localStorage = window.localStorage;
 
 
 
-
-start_button.onclick = function() {
-    quiz_box.style.display = "flex";
-    registration_box.style.display = "none";
+function startGame() {
     let player = new Player(input_name_form.value)
-
-    localStorage.setItem(player.name, player.total_played_time)
+    console.log(playerd)
+    startTimer();           
 }
 
-submit_button.onclick = function() {
-    let player_name = localStorage
-    localStorage.setItem(player.name, player.total_played_time)
+function startTimer() {
+    const timer = new Timer(17);
+    timer.start();
 }
 
+start_button.addEventListener('click', () => {
+    quiz_box.classList.remove('hidden')
+    registration_box.classList.add('hidden')
+    startGame()
+})
 
-function start_game() {
+function loadQuestion() {
+    GET(startingApiURL)
 }

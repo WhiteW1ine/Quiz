@@ -1,25 +1,30 @@
-let seconds = 15; 
+export class Timer {
 
-let tempSeconds = seconds;
+    #duration 
 
+    constructor(duration) {
+      this.duration = duration;
+    }
+  
+    start() {
+      var countDownDate = new Date().getTime() + this.duration*1000;
+  
+      var x = setInterval(() => {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
 
-const setSeconds = (s) => {
-document.querySelector("#seconds").textContent = s + "s";
-};
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+        if (seconds >=  0 ) {
+            document.getElementById("seconds").innerHTML = seconds + "s ";
+        }
 
-let x = setInterval(() => {
-    if (seconds <= 0) {
-        clearInterval(x);
-    }       
-    setSeconds(tempSeconds == 60 ? 59 : tempSeconds);
-    getSeconds(tempSeconds)
-    seconds--;
-    tempSeconds = seconds;
-}, 1000);   
+        if (distance <= 1) {
+            clearInterval(x);
+          }
 
+  
 
-const getSeconds = (s) => {
-    console.log(s)
-    return s;
-    };
+      }, 1000);
+    }
+  }

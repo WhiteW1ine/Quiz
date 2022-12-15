@@ -16,8 +16,6 @@ async function POST(answer, url) {
     }
 
     let response = await fetch(url, fetchData)
-    console.log(response.url)
+    response = response.json();
 
-}
-GET("https://courselab.lnu.se/quiz/question/1")
-POST(2,"https://courselab.lnu.se/quiz/answer/1")    
+}  

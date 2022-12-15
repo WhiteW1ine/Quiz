@@ -10,3 +10,7 @@
 .nickname-box {
     padding: 16px;
 }
+
+.hidden {
+    display: none;
+}
