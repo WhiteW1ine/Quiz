@@ -2,7 +2,6 @@
 async function GET(url) {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
 }
 
 async function POST(answer, url) {
@@ -21,4 +20,4 @@ async function POST(answer, url) {
 
 }
 GET("https://courselab.lnu.se/quiz/question/1")
-POST(2,"https://courselab.lnu.se/quiz/answer/1")
+POST(2,"https://courselab.lnu.se/quiz/answer/1")    

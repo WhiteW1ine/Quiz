@@ -1,4 +1,4 @@
-import { Player } from './player.js';
+import { Player } from './modules/player.js';
 
 
 
@@ -16,18 +16,25 @@ const submit_button = document.getElementById('submit')
 const quiz_box = document.getElementById('quiz')
 const registration_box = document.getElementById('registration')
 const input_name_form = document.getElementById('nickName')
-var players = [];
+const localStorage = window.localStorage;
+
+
+
 
 
 start_button.onclick = function() {
     quiz_box.style.display = "flex";
     registration_box.style.display = "none";
     let player = new Player(input_name_form.value)
-    players.push(player);
+
+    localStorage.setItem(player.name, player.total_played_time)
 }
 
 submit_button.onclick = function() {
-    
+    let player_name = localStorage
+    localStorage.setItem(player.name, player.total_played_time)
 }
 
 
+function start_game() {
+}
