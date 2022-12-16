@@ -10,6 +10,7 @@ export class Player {
 
     add_played_time(played_time) {
         this.#total_played_time = this.#total_played_time + played_time;
+        
     }
     
 }

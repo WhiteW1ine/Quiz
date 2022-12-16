@@ -1,7 +1,8 @@
 
 async function GET(url) {
-    const response = await fetch(url);
-    const data = await response.json();
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
 }
 
 async function POST(answer, url) {
@@ -18,4 +19,7 @@ async function POST(answer, url) {
     let response = await fetch(url, fetchData)
     response = response.json();
 
+    return response;    
 }  
+
+export {GET, POST};

@@ -28,7 +28,7 @@ ul li label{
     cursor: pointer;
 }
 button{
-    background-color: #5ec6eb;
+    background-color: #70E337;
     border: none;
     display: block;
     width: 100%;
@@ -40,11 +40,11 @@ button{
     padding: 15px;
 }
 button:hover{
-    background-color: #438faa;
+    background-color: #318606;
 }
 button:focus{
     outline: none;
-    background-color: #5ec6eb;
+    background-color: #70E337;
 }
 
 .hidden {

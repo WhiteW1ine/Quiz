@@ -16,7 +16,7 @@ export class Timer {
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         if (seconds >=  0 ) {
-            document.getElementById("seconds").innerHTML = seconds + "s ";
+            document.getElementById('seconds').innerHTML = seconds + 's';
         }
 
         if (distance <= 1) {
@@ -26,5 +26,10 @@ export class Timer {
   
 
       }, 1000);
+    }
+
+    reset(){
+      this.#duration = this.#duration
+      this.start();
     }
   }

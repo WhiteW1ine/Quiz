@@ -1,11 +1,12 @@
 import { Player } from './modules/player.js';
 import { Timer } from './modules/timer.js';
+import * as Request from './modules/request.js';
 
 
 
-const startingApiURL=  "https://courselab.lnu.se/quiz/question/1"   
+const startingApiURL=  'https://courselab.lnu.se/quiz/question/1'  
 
-
+const timer = new Timer(17);
 const question_text = document.getElementById('question')
 const first_option_answer = document.getElementById('a_text')
 const second_option_answer = document.getElementById('b_text')
@@ -22,23 +23,49 @@ const localStorage = window.localStorage;
 
 
 
-function startGame() {
-    let player = new Player(input_name_form.value)
-    console.log(playerd)
-    startTimer();           
-}
-
-function startTimer() {
-    const timer = new Timer(17);
-    timer.start();
-}
-
 start_button.addEventListener('click', () => {
     quiz_box.classList.remove('hidden')
     registration_box.classList.add('hidden')
     startGame()
 })
 
-function loadQuestion() {
-    GET(startingApiURL)
+submit_button.addEventListener('click', () => {
+    startTimer()
+})
+
+
+function startGame() {
+    let player = new Player(input_name_form.value)
+    console.log(player)
+    timer.start();      
+    loadQuestion(startingApiURL);  
+}
+
+
+
+async function loadQuestion(url) {
+    let data = await Request.GET(url)
+    if (data.hasOwnProperty('alternatives')){
+        multiAnswers();
+    }
+    else {
+        singleAnswer();
+    }   
+    question_text.innerHTML = data.question
+    checkAnswerGetNextQuestion()
+}
+
+async function checkAnswerGetNextQuestion() {
+    let postData = await Request.POST(2, 'https://courselab.lnu.se/quiz/answer/1')
+    submit_button.addEventListener('click', () => {
+        loadQuestion(postData.nextURL)
+    })
+}
+
+function singleAnswer() {
+    let input = document.createElement('input')
+    input.setAttribute("type", "text");
+    input.setAttribute("id", "answer");
+    input.setAttribute("name", "answer");
+    document.body.appendChild(input);
 }
