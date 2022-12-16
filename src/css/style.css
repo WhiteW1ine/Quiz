@@ -1,6 +1,7 @@
 @import "quiz-box.css";
 @import "registration-box.css";
-@import "timer.css";    
+@import "timer.css";
+@import "results-box.css";     
 
 
 
@@ -22,3 +23,13 @@ body {
     margin: 16px;
     align-self: center;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 16px;
+}
+
+
+
