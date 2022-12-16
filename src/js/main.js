@@ -45,27 +45,58 @@ function startGame() {
 
 async function loadQuestion(url) {
     let data = await Request.GET(url)
+    question_text.innerHTML = data.question
     if (data.hasOwnProperty('alternatives')){
-        multiAnswers();
+        multiAnswers(data)
     }
     else {
-        singleAnswer();
-    }   
-    question_text.innerHTML = data.question
-    checkAnswerGetNextQuestion()
+        singleAnswer(data)
+    }
+       
 }
 
-async function checkAnswerGetNextQuestion() {
-    let postData = await Request.POST(2, 'https://courselab.lnu.se/quiz/answer/1')
-    submit_button.addEventListener('click', () => {
-        loadQuestion(postData.nextURL)
-    })
+
+function multiAnswers(data) {
+    let alternatives = data.alternatives
+    let form = document.createElement('form')
+    
+    let targetElement = document.getElementById("submit");
+    let parent = targetElement.parentNode
+    parent.insertBefore(form, targetElement)
+    for(let alternative in alternatives){
+        addRadioButton(form, alternative, alternative.key, alternative.value)
+    }
 }
 
-function singleAnswer() {
+function addRadioButton(form, name, value) {
+    let radioButton = document.createElement('input')
+    radioButton.type = "radio";
+    radioButton.name = name;
+    radioButton.value = value;
+    form.appendChild(radioButton)
+}
+
+
+
+function singleAnswer(data) {
+
     let input = document.createElement('input')
+    input.classList.add('input')
+    let targetElement = document.getElementById("submit");
+    let parent = targetElement.parentNode
     input.setAttribute("type", "text");
     input.setAttribute("id", "answer");
     input.setAttribute("name", "answer");
-    document.body.appendChild(input);
+    parent.insertBefore(input, targetElement)
+
+    
+    submit_button.addEventListener('click', async function() {
+        console.log(input.value)
+        let postData = await Request.POST(input.value, data.nextURL)
+        loadQuestion(postData.nextURL)
+        input.remove()
+    })
+
+
+
 }
