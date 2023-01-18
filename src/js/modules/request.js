@@ -17,7 +17,7 @@ async function POST(answer, url) {
     }
 
     let response = await fetch(url, fetchData)
-    response = response.json();
+
 
     return response;    
 }  

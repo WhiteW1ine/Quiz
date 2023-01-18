@@ -1,35 +1,32 @@
 export class Timer {
 
-    #duration 
+    isRunning
 
-    constructor(duration) {
-      this.duration = duration;
-    }
   
-    start() {
-      var countDownDate = new Date().getTime() + this.duration*1000;
-  
-      var x = setInterval(() => {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
+    start(duration) {
 
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        if (seconds >=  0 ) {
-            document.getElementById('seconds').innerHTML = seconds + 's';
+      this.isRunning = true;
+
+
+      let timeLeft = duration
+
+        let downloadTimer = setInterval(function(){
+
+        if(this.isRunning) {
+          console.log(1)
+           clearInterval(downloadTimer)
+           this.isRunning = false;
         }
-
-        if (distance <= 1) {
-            clearInterval(x);
-          }
-
-  
+        
+        if (timeLeft<= 0) {
+          clearInterval(downloadTimer)
+        }
+        document.getElementById('seconds').innerHTML = timeLeft + 's';
+        timeLeft -= 1;
 
       }, 1000);
     }
 
-    reset(){
-      this.#duration = this.#duration
-      this.start();
-    }
+
   }
