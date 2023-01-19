@@ -1,3 +1,6 @@
+import { errorMessage } from "../main.js";
+
+
 let downloadTimer;
 let playedTime
 let timeLeft;
@@ -10,6 +13,11 @@ function startTimer(duration) {
 
       downloadTimer = setInterval(function(){
       
+      if (timeLeft<= 0) {
+        stopTimer();
+        errorMessage();
+      }
+
       document.getElementById('seconds').innerHTML = timeLeft + 's';
       timeLeft -= 1;
       playedTime = duration - timeLeft;
@@ -25,13 +33,5 @@ function getPlayedTime() {
     return playedTime;
 }
 
-function timeIsOver() {
 
-    if (timeLeft<= 0) {
-        stopTimer();
-        errorMessage();
-      }
-      
-}
-
-export {startTimer, stopTimer, getPlayedTime, timeIsOver};
+export {startTimer, stopTimer, getPlayedTime};

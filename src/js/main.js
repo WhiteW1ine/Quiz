@@ -2,6 +2,7 @@ import { Player } from './modules/player.js';
 import * as Request from './modules/request.js';
 import * as Timer from './modules/timer.js';
 import * as Storage from './modules/storage.js';
+export { errorMessage }
 
 
 const startingApiURL=  'https://courselab.lnu.se/quiz/question/1'  
@@ -24,9 +25,11 @@ const restart_button = document.getElementById('restart')
 
 
 start_button.addEventListener('click', () => {
+    
     quiz_box.classList.remove('hidden')
     registration_box.classList.add('hidden')
     startGame();
+
 }, {once: true})
 
 submit_button.addEventListener('click', () => {
@@ -156,6 +159,7 @@ function errorMessage(data) {
     },{once: true})
 
 } 
+
 
 
 
