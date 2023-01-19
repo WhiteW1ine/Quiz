@@ -1,32 +1,37 @@
-export class Timer {
-
-    isRunning
-
-  
-    start(duration) {
+let downloadTimer;
+let playedTime
+let timeLeft;
 
 
-      this.isRunning = true;
 
+function startTimer(duration) {
 
-      let timeLeft = duration
+    timeLeft = duration
 
-        let downloadTimer = setInterval(function(){
+      downloadTimer = setInterval(function(){
+      
+      document.getElementById('seconds').innerHTML = timeLeft + 's';
+      timeLeft -= 1;
+      playedTime = duration - timeLeft;
 
-        if(this.isRunning) {
-          console.log(1)
-           clearInterval(downloadTimer)
-           this.isRunning = false;
-        }
-        
-        if (timeLeft<= 0) {
-          clearInterval(downloadTimer)
-        }
-        document.getElementById('seconds').innerHTML = timeLeft + 's';
-        timeLeft -= 1;
+    }, 1000);
+}
 
-      }, 1000);
-    }
+function stopTimer() {
+    clearInterval(downloadTimer)
+}
 
+function getPlayedTime() {
+    return playedTime;
+}
 
-  }
+function timeIsOver() {
+
+    if (timeLeft<= 0) {
+        stopTimer();
+        errorMessage();
+      }
+      
+}
+
+export {startTimer, stopTimer, getPlayedTime, timeIsOver};

@@ -1,13 +1,13 @@
 import { Player } from './modules/player.js';
-import { Timer } from './modules/timer.js';
 import * as Request from './modules/request.js';
-
+import * as Timer from './modules/timer.js';
+import * as Storage from './modules/storage.js';
 
 
 const startingApiURL=  'https://courselab.lnu.se/quiz/question/1'  
 
+let player;
 
-let downloadTimer;
 const question_text = document.getElementById('question')
 const submit = document.getElementById('submit')
 const start_button = document.getElementById('start')
@@ -18,7 +18,6 @@ const input_name_form = document.getElementById('nickName')
 const localStorage = window.localStorage;
 const results_box = document.getElementById('results')
 const error_box = document.getElementById('errors')
-const error_message = document.getElementById('error-message')
 const restart_button = document.getElementById('restart')
 
 
@@ -27,45 +26,29 @@ const restart_button = document.getElementById('restart')
 start_button.addEventListener('click', () => {
     quiz_box.classList.remove('hidden')
     registration_box.classList.add('hidden')
-    startGame()
+    startGame();
 }, {once: true})
 
 submit_button.addEventListener('click', () => {
-    stopTimer()
-    startTimer(10)
-}, {once: true})
+    let played_time = Timer.getPlayedTime()
+    player.addPlayedTime(played_time);
+    
+    Timer.stopTimer()
+    Timer.startTimer(10)
+}, )
 
 
 
 function startGame() {
-    let player = new Player(input_name_form.value)
-    startTimer(10);     
+    player = new Player(input_name_form.value)
+    Timer.startTimer(10);     
     loadQuestion(startingApiURL);  
-}
-
-
-function startTimer(duration) {
-
-    let timeLeft = duration
-
-      downloadTimer = setInterval(function(){
-      
-      if (timeLeft<= 0) {
-        stopTimer();
-      }
-      document.getElementById('seconds').innerHTML = timeLeft + 's';
-      timeLeft -= 1;
-
-    }, 1000);
-}
-
-function stopTimer() {
-    clearInterval(downloadTimer)
 }
 
 
 async function loadQuestion(url) {
     let data = await Request.GET(url)
+    console.log(data)
     question_text.innerHTML = data.question
     if (data.hasOwnProperty('alternatives')){
         multiAnswers(data)

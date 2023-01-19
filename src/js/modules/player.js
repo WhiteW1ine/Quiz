@@ -1,16 +1,15 @@
 export class Player {
 
     #name;
-    #total_played_time;
+    #totalPlayedTime;
 
     constructor(name) {
         this.#name = name;
-        this.#total_played_time = 0;
+        this.#totalPlayedTime = 0;
     }
 
-    add_played_time(played_time) {
-        this.#total_played_time = this.#total_played_time + played_time;
-        
+    addPlayedTime(playedTime) {
+        this.#totalPlayedTime = this.#totalPlayedTime + playedTime;
     }
     
 }
