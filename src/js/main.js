@@ -10,7 +10,6 @@ const startingApiURL=  'https://courselab.lnu.se/quiz/question/1'
 let player;
 
 const question_text = document.getElementById('question')
-const submit = document.getElementById('submit')
 const start_button = document.getElementById('start')
 const submit_button = document.getElementById('submit')
 const quiz_box = document.getElementById('quiz')
@@ -20,25 +19,38 @@ const localStorage = window.localStorage;
 const results_box = document.getElementById('results')
 const error_box = document.getElementById('errors')
 const restart_button = document.getElementById('restart')
+const leaderboard_button = document.getElementById('results')
 
 
 
 
 start_button.addEventListener('click', () => {
-    
+
     quiz_box.classList.remove('hidden')
     registration_box.classList.add('hidden')
     startGame();
 
-}, {once: true})
+}, )
 
 submit_button.addEventListener('click', () => {
+
     let played_time = Timer.getPlayedTime()
     player.addPlayedTime(played_time);
-    
+    console.log(player)
     Timer.stopTimer()
     Timer.startTimer(10)
+
 }, )
+
+restart_button.addEventListener('click', () => {
+    
+    Timer.stopTimer();
+    player = null;  
+    error_box.classList.add('hidden')
+    registration_box.classList.remove('hidden')
+    
+
+},)
 
 
 
@@ -150,13 +162,10 @@ function finishGame() {
     results_box.classList.remove('hidden')
 }
 
-function errorMessage(data) {
+function errorMessage() {
+
     quiz_box.classList.add('hidden')
     error_box.classList.remove('hidden')
-
-    restart_button.addEventListener('click', {
-
-    },{once: true})
 
 } 
 
