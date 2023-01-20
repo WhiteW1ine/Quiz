@@ -17,3 +17,8 @@ h2{
     display: none;
 }
 
+.output {
+    padding: 16px;
+    background-color: #70E337;
+}
+

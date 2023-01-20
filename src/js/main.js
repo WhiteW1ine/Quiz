@@ -1,7 +1,6 @@
 import { Player } from './modules/player.js';
 import * as Request from './modules/request.js';
 import * as Timer from './modules/timer.js';
-import * as Storage from './modules/storage.js';
 export { errorMessage }
 
 
@@ -16,11 +15,11 @@ const quiz_box = document.getElementById('quiz')
 const registration_box = document.getElementById('registration-box')
 const winning_box = document.getElementById('winning-box')
 const input_name_form = document.getElementById('nickName')
-const localStorage = window.localStorage;
 const results_box = document.getElementById('results_box')
 const error_box = document.getElementById('errors')
 const restart_button = document.getElementById('restart')
 const leaderboard_button_win = document.getElementById('results_in_winning_box')
+
 const leaderboard_button_error = document.getElementById('results_in_error_box')
 
 
@@ -37,7 +36,6 @@ submit_button.addEventListener('click', () => {
 
     let played_time = Timer.getPlayedTime()
     player.addPlayedTime(played_time);
-    console.log(player)
     Timer.stopTimer()
     Timer.startTimer(10)
 
@@ -56,6 +54,8 @@ leaderboard_button_win.addEventListener('click', () => {
     
     winning_box.classList.add('hidden')
     results_box.classList.remove('hidden')
+
+    showLeaderBoard();
     
 
 },)
@@ -65,6 +65,7 @@ leaderboard_button_error.addEventListener('click', () => {
     error_box.classList.add('hidden')
     results_box.classList.remove('hidden')
     
+    showLeaderBoard();
 
 },)
 
@@ -176,6 +177,7 @@ function finishGame() {
     let player_result = document.getElementById('player_result')
     player_result.innerHTML = "Your result is: " + player.getPlayedTime() + " seconds";
     winning_box.classList.remove('hidden')
+    sessionStorage.setItem(player.getPlayerName(), player.getPlayedTime())
 }
 
 function errorMessage() {
@@ -185,6 +187,17 @@ function errorMessage() {
     error_box.classList.remove('hidden')
 
 } 
+
+function showLeaderBoard() {
+    for (let i = 1; i < sessionStorage.length; i++) {
+        let key = sessionStorage.key(i)
+        let value = sessionStorage.getItem(key)
+        let node = document.createElement("LI")
+        let textnode = document.createTextNode("{Nickname: " + key + "; Seconds: " + value + "}")
+        node.appendChild(textnode)
+        document.getElementById('data').appendChild(node)
+    }
+}
 
 
 
