@@ -1,25 +1,32 @@
 
-async function GET(url) {
-    let response = await fetch(url);
-    let data = await response.json();
-    return data;
+/**
+ *
+ * @param url
+ */
+async function GET (url) {
+  const response = await fetch(url)
+  const data = await response.json()
+  return data
 }
 
-async function POST(answer, url) {
+/**
+ *
+ * @param answer
+ * @param url
+ */
+async function POST (answer, url) {
+  const fetchData = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify({ answer })
 
-    let fetchData = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
-        body: JSON.stringify({"answer": answer}),
-    
-    }
+  }
 
-    let response = await fetch(url, fetchData)
+  const response = await fetch(url, fetchData)
 
-    
-    return response;    
-}  
+  return response
+}
 
-export {GET, POST};
+export { GET, POST }

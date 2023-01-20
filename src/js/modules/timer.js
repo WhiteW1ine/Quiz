@@ -1,37 +1,40 @@
-import { errorMessage } from "../main.js";
+import { errorMessage } from '../main.js'
 
-
-let downloadTimer;
+let downloadTimer
 let playedTime
-let timeLeft;
+let timeLeft
 
+/**
+ *
+ * @param duration
+ */
+function startTimer (duration) {
+  timeLeft = duration
 
+  downloadTimer = setInterval(function () {
+    if (timeLeft <= 0) {
+      stopTimer()
+      errorMessage()
+    }
 
-function startTimer(duration) {
-
-    timeLeft = duration
-
-      downloadTimer = setInterval(function(){
-      
-      if (timeLeft<= 0) {
-        stopTimer();
-        errorMessage();
-      }
-
-      document.getElementById('seconds').innerHTML = timeLeft + 's';
-      timeLeft -= 1;
-      playedTime = duration - timeLeft;
-
-    }, 1000);
+    document.getElementById('seconds').innerHTML = timeLeft + 's'
+    timeLeft -= 1
+    playedTime = duration - timeLeft
+  }, 1000)
 }
 
-function stopTimer() {
-    clearInterval(downloadTimer)
+/**
+ *
+ */
+function stopTimer () {
+  clearInterval(downloadTimer)
 }
 
-function getPlayedTime() {
-    return playedTime;
+/**
+ *
+ */
+function getPlayedTime () {
+  return playedTime
 }
 
-
-export {startTimer, stopTimer, getPlayedTime};
+export { startTimer, stopTimer, getPlayedTime }

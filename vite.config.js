@@ -1,9 +1,8 @@
 export default {
-    root: 'src',
-    build: {
-      outDir: '../dist',
-      emptyOutDir: true,
-      target: 'esnext'
-    }
+  root: 'src',
+  build: {
+    outDir: '../dist',
+    emptyOutDir: true,
+    target: 'esnext'
   }
-  
+}
