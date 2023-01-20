@@ -1,7 +1,7 @@
 
 /**
  *
- * @param url
+ * @param {string} url //The first url of giving api
  */
 async function GET (url) {
   const response = await fetch(url)
@@ -11,8 +11,8 @@ async function GET (url) {
 
 /**
  *
- * @param answer
- * @param url
+ * @param {HTMLInputElement} answer // The answer provided by user
+ * @param {string} url //The first url of giving api
  */
 async function POST (answer, url) {
   const fetchData = {

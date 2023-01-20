@@ -7,49 +7,48 @@ const startingApiURL = 'https://courselab.lnu.se/quiz/question/1'
 
 let player
 
-const question_text = document.getElementById('question')
-const start_button = document.getElementById('start-button')
-const submit_button = document.getElementById('submit')
-const quiz_box = document.getElementById('quiz')
-const registration_box = document.getElementById('registration-box')
-const winning_box = document.getElementById('winning-box')
-const input_name_form = document.getElementById('nickName')
-const results_box = document.getElementById('results_box')
-const error_box = document.getElementById('errors')
-const restart_button = document.getElementById('restart')
-const leaderboard_button_win = document.getElementById('results_in_winning_box')
+const questionText = document.getElementById('question')
+const startButton = document.getElementById('start-button')
+const submitButton = document.getElementById('submit')
+const quizBox = document.getElementById('quiz')
+const registrationBox = document.getElementById('registration-box')
+const winningBox = document.getElementById('winning-box')
+const inputNameForm = document.getElementById('nickName')
+const resultsBox = document.getElementById('results_box')
+const errorBox = document.getElementById('errors')
+const restartButton = document.getElementById('restart')
+const leaderboardButtonWin = document.getElementById('results_in_winning_box')
+const leaderboardButtonError = document.getElementById('results_in_error_box')
 
-const leaderboard_button_error = document.getElementById('results_in_error_box')
-
-start_button.addEventListener('click', () => {
-  quiz_box.classList.remove('hidden')
-  registration_box.classList.add('hidden')
+startButton.addEventListener('click', () => {
+  quizBox.classList.remove('hidden')
+  registrationBox.classList.add('hidden')
   startGame()
 })
 
-submit_button.addEventListener('click', () => {
-  const played_time = Timer.getPlayedTime()
-  player.addPlayedTime(played_time)
+submitButton.addEventListener('click', () => {
+  const playedTime = Timer.getPlayedTime()
+  player.addPlayedTime(playedTime)
   Timer.stopTimer()
   Timer.startTimer(10)
 })
 
-restart_button.addEventListener('click', () => {
+restartButton.addEventListener('click', () => {
   player = null
-  error_box.classList.add('hidden')
-  registration_box.classList.remove('hidden')
+  errorBox.classList.add('hidden')
+  registrationBox.classList.remove('hidden')
 })
 
-leaderboard_button_win.addEventListener('click', () => {
-  winning_box.classList.add('hidden')
-  results_box.classList.remove('hidden')
+leaderboardButtonWin.addEventListener('click', () => {
+  winningBox.classList.add('hidden')
+  resultsBox.classList.remove('hidden')
 
   showLeaderBoard()
 })
 
-leaderboard_button_error.addEventListener('click', () => {
-  error_box.classList.add('hidden')
-  results_box.classList.remove('hidden')
+leaderboardButtonError.addEventListener('click', () => {
+  errorBox.classList.add('hidden')
+  resultsBox.classList.remove('hidden')
 
   showLeaderBoard()
 })
@@ -58,19 +57,19 @@ leaderboard_button_error.addEventListener('click', () => {
  *
  */
 function startGame () {
-  player = new Player(input_name_form.value)
+  player = new Player(inputNameForm.value)
   Timer.startTimer(10)
   loadQuestion(startingApiURL)
 }
 
 /**
  *
- * @param url
+ * @param {string} url //The first url of giving api
  */
 async function loadQuestion (url) {
   const data = await Request.GET(url)
-  question_text.innerHTML = data.question
-  if (data.hasOwnProperty('alternatives')) {
+  questionText.innerHTML = data.question
+  if (Object.prototype.hasOwnProperty.call(data, 'alternatives')) {
     multiAnswers(data)
   } else {
     singleAnswer(data)
@@ -79,7 +78,7 @@ async function loadQuestion (url) {
 
 /**
  *
- * @param data
+ * @param {JSON} data //The data provided by api
  */
 function singleAnswer (data) {
   const input = document.createElement('input')
@@ -91,24 +90,24 @@ function singleAnswer (data) {
   input.setAttribute('name', 'answer')
   parent.insertBefore(input, targetElement)
 
-  submit_button.addEventListener('click', async function () {
+  submitButton.addEventListener('click', async function () {
     const response = await Request.POST(input.value, data.nextURL)
-    const data_json = await response.json()
+    const dataJson = await response.json()
 
     if (response.status === 400) {
       errorMessage()
-    } else if (!data_json.hasOwnProperty('nextURL') && response.status === 200) {
+    } else if (!Object.prototype.hasOwnProperty.call(dataJson, 'nextURL') && response.status === 200) {
       finishGame()
     }
 
-    loadQuestion(data_json.nextURL)
+    loadQuestion(dataJson.nextURL)
     input.remove()
   }, { once: true })
 }
 
 /**
  *
- * @param data
+ * @param {JSON} data //The data provided by api
  */
 function multiAnswers (data) {
   const alternatives = data.alternatives
@@ -122,27 +121,27 @@ function multiAnswers (data) {
     addRadioButton(form, alternative, alternatives[alternative])
   }
 
-  submit_button.addEventListener('click', async function () {
+  submitButton.addEventListener('click', async function () {
     const selectedRadio = form.querySelector('input[name="buttonsGroup"]:checked')
     const response = await Request.POST(selectedRadio.value, data.nextURL)
-    const data_json = await response.json()
+    const dataJson = await response.json()
 
     if (response.status === 400) {
-      errorMessage(data_json)
-    } else if (!data_json.hasOwnProperty('nextURL') && response.status === 200) {
+      errorMessage(dataJson)
+    } else if (!Object.prototype.hasOwnProperty.call(dataJson, 'nextURL') && response.status === 200) {
       finishGame()
     }
 
-    loadQuestion(data_json.nextURL)
+    loadQuestion(dataJson.nextURL)
     form.remove()
   }, { once: true })
 }
 
 /**
  *
- * @param form
- * @param value
- * @param labelText
+ * @param {HTMLFormElement} form // The form where we need to add radio buttons
+ * @param {string} value // Value of the radio buttons
+ * @param {HTMLLabelElement} labelText // Labels of the radio buttons
  */
 function addRadioButton (form, value, labelText) {
   const radioButton = document.createElement('input')
@@ -161,11 +160,11 @@ function addRadioButton (form, value, labelText) {
  *
  */
 function finishGame () {
-  quiz_box.classList.add('hidden')
+  quizBox.classList.add('hidden')
   Timer.stopTimer()
-  const player_result = document.getElementById('player_result')
-  player_result.innerHTML = 'Your result is: ' + player.getPlayedTime() + ' seconds'
-  winning_box.classList.remove('hidden')
+  const playerResult = document.getElementById('player_result')
+  playerResult.innerHTML = 'Your result is: ' + player.getPlayedTime() + ' seconds'
+  winningBox.classList.remove('hidden')
   sessionStorage.setItem(player.getPlayerName(), player.getPlayedTime())
 }
 
@@ -174,8 +173,8 @@ function finishGame () {
  */
 function errorMessage () {
   Timer.stopTimer()
-  quiz_box.classList.add('hidden')
-  error_box.classList.remove('hidden')
+  quizBox.classList.add('hidden')
+  errorBox.classList.remove('hidden')
 }
 
 /**

@@ -6,7 +6,7 @@ let timeLeft
 
 /**
  *
- * @param duration
+ * @param {string} duration // duration of the timer
  */
 function startTimer (duration) {
   timeLeft = duration
@@ -31,7 +31,7 @@ function stopTimer () {
 }
 
 /**
- *
+ * @returns {string} // Returns the played time of the user for one question
  */
 function getPlayedTime () {
   return playedTime
