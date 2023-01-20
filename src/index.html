@@ -13,34 +13,43 @@
 
 
 
-<div class ="registration-box" id="registration">
+<div class ="registration-box" id="registration-box">
     <form class="nickname-box">
         <label for="fname">Nickname:</label>
         <input type="text" id="nickName" name="nickName">
       </form>
-    <button id="start">Submit</button>
+    <button id="start-button">Submit</button>
 </div>
 
 
 
 
-<div class ="results-box hidden" id="results">
+<div class ="results-box hidden" id="results_box">
 
-    <h2 id="results">Results</h2>
+    <h2 id="results_header">Results</h2>
+
+</div>
+
+<div class="winning-box hidden" id="winning-box">
+
+    <h2 id="winning_header">Congratulations</h2>
+
+    <span id="player_result">Your result is: </span>
+
+    <button id="results_in_winning_box">Show Leaderboard</button>
 
 </div>
 
 <div class ="error-box hidden" id="errors">
 
-    <h2 id="results">You give incorrect answer or time is over</h2>
+    <h2 id="">You give incorrect answer or time is over</h2>
 
 
 
-    <button id="show-results">Show Leaderboard</button>
+    <button id="results_in_error_box">Show Leaderboard</button>
     <button id="restart">Start Again</button>
 
 </div>
-
 
 
 
@@ -66,4 +75,5 @@
 <script type="module" src="./js/modules/timer.js"></script>
 <script type="module" src="./js/main.js"></script>
 <script type="module" src="./js/modules/request.js"></script>
+<script type="module" src="./js/modules/storage.js"></script>
 </html>

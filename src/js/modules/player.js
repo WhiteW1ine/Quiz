@@ -11,5 +11,13 @@ export class Player {
     addPlayedTime(playedTime) {
         this.#totalPlayedTime = this.#totalPlayedTime + playedTime;
     }
+
+    getPlayedTime() {
+        return this.#totalPlayedTime;
+    }
+
+    getPlayerName() {
+        return this.#name;
+    }
     
 }

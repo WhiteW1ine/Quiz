@@ -4,7 +4,7 @@ h2{
     margin: 0;
 }
 
-.results-box{
+.winning-box{
 
     background-color: #fff;
     border-radius: 10px;
@@ -13,7 +13,10 @@ h2{
     
 }
 
+.player_result {
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
-

@@ -10,17 +10,18 @@ const startingApiURL=  'https://courselab.lnu.se/quiz/question/1'
 let player;
 
 const question_text = document.getElementById('question')
-const start_button = document.getElementById('start')
+const start_button = document.getElementById('start-button')
 const submit_button = document.getElementById('submit')
 const quiz_box = document.getElementById('quiz')
-const registration_box = document.getElementById('registration')
+const registration_box = document.getElementById('registration-box')
+const winning_box = document.getElementById('winning-box')
 const input_name_form = document.getElementById('nickName')
 const localStorage = window.localStorage;
-const results_box = document.getElementById('results')
+const results_box = document.getElementById('results_box')
 const error_box = document.getElementById('errors')
 const restart_button = document.getElementById('restart')
-const leaderboard_button = document.getElementById('results')
-
+const leaderboard_button_win = document.getElementById('results_in_winning_box')
+const leaderboard_button_error = document.getElementById('results_in_error_box')
 
 
 
@@ -44,7 +45,6 @@ submit_button.addEventListener('click', () => {
 
 restart_button.addEventListener('click', () => {
     
-    Timer.stopTimer();
     player = null;  
     error_box.classList.add('hidden')
     registration_box.classList.remove('hidden')
@@ -52,7 +52,21 @@ restart_button.addEventListener('click', () => {
 
 },)
 
+leaderboard_button_win.addEventListener('click', () => {
+    
+    winning_box.classList.add('hidden')
+    results_box.classList.remove('hidden')
+    
 
+},)
+
+leaderboard_button_error.addEventListener('click', () => {
+    
+    error_box.classList.add('hidden')
+    results_box.classList.remove('hidden')
+    
+
+},)
 
 function startGame() {
     player = new Player(input_name_form.value)
@@ -63,7 +77,6 @@ function startGame() {
 
 async function loadQuestion(url) {
     let data = await Request.GET(url)
-    console.log(data)
     question_text.innerHTML = data.question
     if (data.hasOwnProperty('alternatives')){
         multiAnswers(data)
@@ -158,12 +171,16 @@ function addRadioButton(form, value, labelText) {
 
 
 function finishGame() {
-    quiz_box.classList.add('hidden')
-    results_box.classList.remove('hidden')
+    quiz_box.classList.add('hidden');
+    Timer.stopTimer();
+    let player_result = document.getElementById('player_result')
+    player_result.innerHTML = "Your result is: " + player.getPlayedTime() + " seconds";
+    winning_box.classList.remove('hidden')
 }
 
 function errorMessage() {
 
+    Timer.stopTimer();
     quiz_box.classList.add('hidden')
     error_box.classList.remove('hidden')
 
