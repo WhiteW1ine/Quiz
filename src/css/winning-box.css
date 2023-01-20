@@ -1,22 +1,20 @@
-h2{
-    padding: 16px;
-    text-align: center;
-    margin: 0;
+h2 {
+  padding: 16px;
+  text-align: center;
+  margin: 0;
 }
 
-.winning-box{
-
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
-    width: 600px;
-    
+.winning-box {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+  width: 600px;
 }
 
 .player_result {
-    text-align: center;
+  text-align: center;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

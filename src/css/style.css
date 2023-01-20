@@ -1,37 +1,39 @@
 @import "quiz-box.css";
 @import "registration-box.css";
 @import "timer.css";
-@import "results-box.css";    
-@import "error-box.css";  
-@import "winning-box.css";    
+@import "results-box.css";
+
+@import "error-box.css";
+
+@import "winning-box.css";
+
 
 
 
 body {
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    background-position: center;
-    background-size: cover;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  background-position: center;
+  background-size: cover;
 }
 
 .input {
-    width: 300px;
-    height: 30x;
-    margin: 16px;
-    align-self: center;
+  width: 300px;
+  height: 30x;
+  margin: 16px;
+  align-self: center;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px;
 }
-
 
 

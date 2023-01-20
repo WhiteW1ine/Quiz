@@ -1,18 +1,19 @@
 #timer-box {
-    align-self: flex-end;
-    margin: 16px;
-    width: 180px; 
-    border-radius: 5px; 
-    background-color: #70E337;
-    text-align: center;
+  align-self: flex-end;
+  margin: 16px;
+  width: 180px;
+  border-radius: 5px;
+  background-color: #70e337;
+  text-align: center;
 }
+
 #timer {
-    font-family: "Fira Sans", sans-serif; 
-    padding: 30px; 
-    color: black;
+  font-family: "Fira Sans", sans-serif;
+  padding: 30px;
+  color: black;
 }
 
 #timer span {
-    font-weight: bold; 
-    font-size: 15px;
+  font-weight: bold;
+  font-size: 15px;
 }
