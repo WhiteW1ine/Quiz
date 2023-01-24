@@ -1,2 +1,4 @@
 # A2 Quiz
-![title](src\images\approximate.png)
+![Schema](src\images\approximate.png)
+
+The schema is relatively easy 

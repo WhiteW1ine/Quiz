@@ -5,8 +5,8 @@
     <title>Quiz</title>
     
 
-  <script type="module" crossorigin src="/assets/index.99ed9279.js"></script>
-  <link rel="stylesheet" href="/assets/index.dacd2058.css">
+  <script type="module" crossorigin src="/assets/index.febf004b.js"></script>
+  <link rel="stylesheet" href="/assets/index.cb6c8b17.css">
 </head>
 <body>
 
@@ -15,50 +15,62 @@
 
 
 
-<div class ="registration-box" id="registration">
+<div class ="registration-box" id="registration-box">
     <form class="nickname-box">
         <label for="fname">Nickname:</label>
-        <input type="text" id="fname" name="fname">
+        <input type="text" id="nickName" name="nickName">
       </form>
-    <button id="start">Submit</button>
+    <button id="start-button">Submit</button>
 </div>
 
 
 
 
-<div class="quiz-box" id="quiz">
+<div class ="results-box hidden" id="results_box">
+
+    <h2 id="results_header">Results</h2>
+
+    <p class="output" id="output">Leaderboard: <span id="data"></span></p>
+
+    <button id="restart_in_results_box">Start Again</button>
+
+</div>
+
+<div class="winning-box hidden" id="winning-box">
+
+    <h2 id="winning_header">Congratulations</h2>
+
+    <span id="player_result">Your result is: </span>
+
+    <button id="results_in_winning_box">Show Leaderboard</button>
+
+</div>
+
+<div class ="error-box hidden" id="errors">
+
+    <h2 id="">You give incorrect answer or time is over</h2>
+
+
+
+    <button id="results_in_error_box">Show Leaderboard</button>
+    <button id="restart_in_error_box">Start Again</button>
+
+</div>
+
+
+
+<div class="quiz-box hidden" id="quiz">
 
     <div id="timer-box">
         <div id="timer">
-            <span id="seconds">0s</span>
+            <span id="seconds"></span>
         </div>
     </div>
 
     <div class="quiz-header">
 
-
-        
         <h2 id="question">Question text</h2>
 
-
-        <ul>
-            <li>
-                <input type="radio" name="answer" id="a" class="answer">
-                <label for="a" id="a_text">Question</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="b" class="answer">
-                <label for="b" id="b_text">Question</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="c" class="answer">
-                <label for="c" id="c_text">Question</label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="c" class="answer">
-                <label for="c" id="d_text">Question</label>
-            </li>   
-        </ul>
     </div>
     <button id="submit">Submit</button>
 </div>
