@@ -1,2 +1,2 @@
 # A2 Quiz
-![image](C:\Users\ratmi\Desktop\approximate)
+![image](src\images\approximate.png)
