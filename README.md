@@ -1,2 +1,2 @@
 # A2 Quiz
-![image](src\images\approximate.png)
+![title](src\images\approximate.png)
