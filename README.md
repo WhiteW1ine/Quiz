@@ -5,4 +5,6 @@
 
 2. Clone code from gitlab -> npm run build -> npm run serve -> then open website with given localhost
 
-3. 
+3. You have 10 seconds to answer the question, if time is out or you give an incorrect answer then the program will notify you and provide you with a restart option. There are two different types of questions, one with provided answers and the second with input form.
+
+4. There are 3 options to execute linters: npm run htmlhint(for html files), npm run eslint(for js files), npm run stylelint(for css files)
