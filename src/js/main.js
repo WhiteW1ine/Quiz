@@ -35,6 +35,7 @@ submitButton.addEventListener('click', () => {
 
 restartButton.addEventListener('click', () => {
   player = null
+  location.reload()
   errorBox.classList.add('hidden')
   registrationBox.classList.remove('hidden')
 })
