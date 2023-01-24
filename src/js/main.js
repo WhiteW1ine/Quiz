@@ -16,7 +16,8 @@ const winningBox = document.getElementById('winning-box')
 const inputNameForm = document.getElementById('nickName')
 const resultsBox = document.getElementById('results_box')
 const errorBox = document.getElementById('errors')
-const restartButton = document.getElementById('restart')
+const restartButtonError = document.getElementById('restart_in_error_box')
+const restartButtonWin = document.getElementById('restart_in_results_box')
 const leaderboardButtonWin = document.getElementById('results_in_winning_box')
 const leaderboardButtonError = document.getElementById('results_in_error_box')
 
@@ -33,10 +34,17 @@ submitButton.addEventListener('click', () => {
   Timer.startTimer(10)
 })
 
-restartButton.addEventListener('click', () => {
+restartButtonError.addEventListener('click', () => {
   player = null
   location.reload()
   errorBox.classList.add('hidden')
+  registrationBox.classList.remove('hidden')
+})
+
+restartButtonWin.addEventListener('click', () => {
+  player = null
+  location.reload()
+  resultsBox.classList.add('hidden')
   registrationBox.classList.remove('hidden')
 })
 
